@@ -172,7 +172,6 @@ steps:
           docker-compose#v4.8.0:
             pull: maze-runner-bitbar
             run: maze-runner-bitbar
-            service-ports: true
             command:
               - "--app=@build/ipa_url.txt"
               - "--appium-version=1.8.0"
@@ -182,6 +181,6 @@ steps:
               - "--order=random"
               - "--no-tunnel"
               - "--aws-public-ip"
-      concurrency: 25
-      concurrency_group: 'bitbar-app'
-      concurrency_method: eager
+        concurrency: 25
+        concurrency_group: bitbar-app
+        concurrency_method: eager
