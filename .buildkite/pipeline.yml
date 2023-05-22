@@ -25,6 +25,7 @@ steps:
           - bundle exec upload-app --app=./features/fixtures/ios/output/Fixture.ipa --app-id-file=./features/fixtures/ios/output/ipa_url.txt
         artifact_paths:
           - features/fixtures/ios/output/ipa_url.txt
+          - features/fixtures/ios/output/Fixture.ipa
 
   - group: ":xcode_simulator: Unit Tests"
     steps:
@@ -167,13 +168,15 @@ steps:
           queue: opensource
         plugins:
           artifacts#v1.5.0:
-            download: "features/fixtures/ios/output/ipa_url.txt"
+            download:
+              - "features/fixtures/ios/output/ipa_url.txt"
+              - "features/fixtures/ios/output/Fixture.ipa"
             upload: "maze_output/failed/**/*"
           docker-compose#v4.8.0:
             pull: maze-runner-bitbar
             run: maze-runner-bitbar
             command:
-              - "--app=@build/ipa_url.txt"
+              - "--app=features/fixtures/ios/output/Fixture.ipa"
               - "--appium-version=1.8.0"
               - "--device=IOS_11"
               - "--fail-fast"
