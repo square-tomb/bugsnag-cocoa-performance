@@ -170,15 +170,18 @@ steps:
             download: "features/fixtures/ios/output/ipa_url.txt"
             upload: "maze_output/failed/**/*"
           docker-compose#v4.8.0:
-            pull: cocoa-maze-runner-legacy
-            run: cocoa-maze-runner-legacy
+            pull: maze-runner-bitbar
+            run: maze-runner-bitbar
+            service-ports: true
             command:
               - "--app=@build/ipa_url.txt"
               - "--appium-version=1.8.0"
               - "--device=IOS_11"
               - "--fail-fast"
-              - "--farm=bs"
+              - "--farm=bb"
               - "--order=random"
-        concurrency: 5
-        concurrency_group: browserstack-app
-        concurrency_method: eager
+              - "--no-tunnel"
+              - "--aws-public-ip"
+      concurrency: 25
+      concurrency_group: 'bitbar-app'
+      concurrency_method: eager
