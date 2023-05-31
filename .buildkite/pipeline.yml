@@ -11,7 +11,7 @@ steps:
       - label: "Carthage"
         command: ./features/fixtures/carthage/build.sh
         env:
-          - DEVELOPER_DIR: /Applications/Xcode14.app
+          DEVELOPER_DIR: /Applications/Xcode14.app
 
       - label: "CocoaPods"
         command: pod lib lint BugsnagPerformance.podspec.json
