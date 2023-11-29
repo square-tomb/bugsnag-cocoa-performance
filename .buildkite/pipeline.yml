@@ -25,6 +25,7 @@ steps:
           - bundle exec upload-app --app=./features/fixtures/ios/output/Fixture.ipa --app-id-file=./features/fixtures/ios/output/ipa_url.txt
         artifact_paths:
           - features/fixtures/ios/output/ipa_url.txt
+          - features/fixtures/ios/output/Fixture.ipa
 
       - label: "Fixture swizzling disabled"
         key: ios_fixture_swizzling_disabled
