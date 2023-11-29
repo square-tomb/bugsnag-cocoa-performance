@@ -10,18 +10,12 @@ steps:
     steps:
       - label: "Carthage"
         command: ./features/fixtures/carthage/build.sh
-        env:
-          XCODE_VERSION: 14.3.1
 
       - label: "CocoaPods"
         command: pod lib lint BugsnagPerformance.podspec.json
-        env:
-          XCODE_VERSION: 14.3.1
 
       - label: "Example"
         command: ./Example/build.sh
-        env:
-          XCODE_VERSION: 14.3.1
 
       - label: "Fixture"
         key: ios_fixture
@@ -32,8 +26,6 @@ steps:
         artifact_paths:
           - features/fixtures/ios/output/ipa_url.txt
           - features/fixtures/ios/output/Fixture.ipa
-        env:
-          XCODE_VERSION: 14.3.1
 
       - label: "Fixture swizzling disabled"
         key: ios_fixture_swizzling_disabled
@@ -43,8 +35,6 @@ steps:
           - bundle exec upload-app --app=./features/fixtures/ios/output/FixtureWithDisableSwizzling.ipa --app-id-file=./features/fixtures/ios/output/ipa_url_swizzling_disabled.txt
         artifact_paths:
           - features/fixtures/ios/output/ipa_url_swizzling_disabled.txt
-        env:
-          XCODE_VERSION: 14.3.1
 
       - label: "Fixture swizzling premain"
         key: ios_fixture_swizzling_premain
@@ -54,14 +44,10 @@ steps:
           - bundle exec upload-app --app=./features/fixtures/ios/output/FixtureWithSwizzlingPremain.ipa --app-id-file=./features/fixtures/ios/output/ipa_url_swizzling_premain.txt
         artifact_paths:
           - features/fixtures/ios/output/ipa_url_swizzling_premain.txt
-        env:
-          XCODE_VERSION: 14.3.1
 
   - group: ":xcode_simulator: Unit Tests"
     steps:
       - label: "iOS 15 Unit Tests"
-        env:
-          XCODE_VERSION: 14.3.1
         commands:
           - ./scripts/run-unit-tests.sh PLATFORM=iOS OS=15.0 DEVICE="iPhone 13"
         plugins:
